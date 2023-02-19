@@ -1,33 +1,13 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:calculator/globals.dart';
+import 'package:calculator/components.dart';
 
 class Calculator extends StatefulWidget {
   // const LoginLayout({super.key});
 
   @override
   State<Calculator> createState() => _CalculatorState();
-}
-
-Column flatButton(String Content){
-  return Column(children: [
-                TextButton(
-                    onPressed: null,
-                    child: Center(
-                        child: Container(
-                      height: 40,
-                      width: 40,
-                      color: Colors.greenAccent,
-                      padding: EdgeInsets.all(10),
-                      child: Center(
-                        child: Text(
-                          Content,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ))),
-              ]);
 }
 
 class _CalculatorState extends State<Calculator> {
@@ -44,31 +24,35 @@ class _CalculatorState extends State<Calculator> {
         ),
       ),
       Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-        child: TextField(
-          onSubmitted: (String email) {
-            setState(() {
-              name = email;
-            });
-          },
-          enabled: false,
-          decoration: InputDecoration(
-            labelText: 'Calculate Here !',
-            border: OutlineInputBorder(),
-            hintText: 'Enter valid Syntex here !',
-          ),
-        ),
-      ),
-      Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Row(
-            children: <Column>[
-              flatButton('+'),
-              flatButton('-'),
-              flatButton('X'),
-              flatButton('/'),
-            ],
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Container(
+            height: 100,
+            width: (display_with - 40),
+            color: Colors.greenAccent,
+            child: TextField(
+              onSubmitted: (String email) {
+                setState(() {
+                  name = email;
+                });
+              },
+              decoration: InputDecoration(
+                labelText: 'Calculate Here !',
+                border: OutlineInputBorder(),
+                hintText: 'Enter valid Syntex here !',
+              ),
+            ),
           )),
+      Center(
+          child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: Row(
+                children: <Widget>[
+                  cus_button('+', 35, (display_with / 4)),
+                  cus_button('-', 35, (display_with / 4)),
+                  cus_button('x', 35, (display_with / 4)),
+                  cus_button('/', 35, (display_with / 4)),
+                ],
+              ))),
     ]);
   }
 }
